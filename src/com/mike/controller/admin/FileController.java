@@ -14,15 +14,15 @@ import java.util.List;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.PathKit;
 import com.jfinal.upload.UploadFile;
-import com.jfinal.util.PathUtil;
 import com.mike.interceptor.SessionInterceptor;
 
 @Before(SessionInterceptor.class)
 public class FileController extends Controller{
 	public void upload() {
 		String path = new SimpleDateFormat("yyyy/MM/dd").format(new Date());
-		UploadFile file = getFile("imgFile", PathUtil.getWebRootPath() + "/temp");
+		UploadFile file = getFile("imgFile", PathKit.getWebRootPath() + "/temp");
 		File source = file.getFile();
 		String fileName = file.getFileName();
 		String extension = fileName.substring(fileName.lastIndexOf("."));
@@ -36,7 +36,7 @@ public class FileController extends Controller{
 		JSONObject json = new JSONObject();
 		try {
 			FileInputStream fis = new FileInputStream(source);
-			File targetDir = new File(PathUtil.getWebRootPath() + "/" + prefix + "/u/"
+			File targetDir = new File(PathKit.getWebRootPath() + "/" + prefix + "/u/"
 					+ path);
 			if (!targetDir.exists()) {
 				targetDir.mkdirs();

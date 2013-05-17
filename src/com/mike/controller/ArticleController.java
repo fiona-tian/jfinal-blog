@@ -15,7 +15,7 @@ import com.mike.pojo.Comment;
 public class ArticleController extends Controller {
 	public void index() {
 		final Integer articleId = getParaToInt(0);
-		Article article = CacheKit.handle("article", "id_" + articleId, new IDataLoader() {
+		Article article = CacheKit.get("article", "id_" + articleId, new IDataLoader() {
 			@Override
 			public Object load() {
 			    return Article.dao.findById(articleId);
@@ -24,7 +24,7 @@ public class ArticleController extends Controller {
 		Article.dao.clear().set("id", articleId).set("viewCount", article.getInt("viewCount") + 1).update();
 		setAttr("article", article);
 		
-		Article previous = CacheKit.handle("article", "id_p_" + articleId, new IDataLoader() {
+		Article previous = CacheKit.get("article", "id_p_" + articleId, new IDataLoader() {
 			@Override
 			public Object load() {
 			    return Article.dao.findFirst("select id,title from article where id < ?  order by id desc limit 0,1", articleId);
@@ -34,7 +34,7 @@ public class ArticleController extends Controller {
 			setAttr("previous", previous);
 		}
 		
-		Article next = CacheKit.handle("article", "id_n_" + articleId, new IDataLoader() {
+		Article next = CacheKit.get("article", "id_n_" + articleId, new IDataLoader() {
 			@Override
 			public Object load() {
 			    return Article.dao.findFirst("select id,title from article where id > ?  order by id asc limit 0,1", articleId);

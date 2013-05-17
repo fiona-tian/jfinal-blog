@@ -16,7 +16,7 @@ public class CategorySuperController extends Controller {
 				"select a.* ", 
 				"from article a,category_sub c where a.finish = 1 and a.categorySubId = c.id and c.pId = ? order by id desc",
 				categorySuperId);
-		CategorySuper categorySuper = CacheKit.handle("article", "categorySuperId_" + categorySuperId, new IDataLoader() {
+		CategorySuper categorySuper = CacheKit.get("article", "categorySuperId_" + categorySuperId, new IDataLoader() {
 			@Override
 			public Object load() {
 				return CategorySuper.dao.findById(categorySuperId);

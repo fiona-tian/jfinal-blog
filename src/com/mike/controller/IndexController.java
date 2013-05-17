@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.StringKit;
 import com.jfinal.plugin.activerecord.Page;
 import com.jfinal.plugin.ehcache.CacheKit;
-import com.jfinal.util.StringKit;
 import com.mike.core.BlogConstants;
 import com.mike.email.Email;
 import com.mike.lucene.ArticleLuceneService;

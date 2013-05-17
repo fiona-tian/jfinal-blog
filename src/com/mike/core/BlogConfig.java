@@ -12,11 +12,12 @@ import com.jfinal.config.Interceptors;
 import com.jfinal.config.JFinalConfig;
 import com.jfinal.config.Plugins;
 import com.jfinal.config.Routes;
+import com.jfinal.core.JFinal;
+import com.jfinal.kit.StringKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.plugin.ehcache.EhCachePlugin;
 import com.jfinal.render.FreeMarkerRender;
-import com.jfinal.util.StringKit;
 import com.mike.controller.CategorySubController;
 import com.mike.controller.CategorySuperController;
 import com.mike.controller.IndexController;
@@ -162,5 +163,8 @@ public class BlogConfig extends JFinalConfig {
 			log.error("set freemarkerrender share variable categorySuperList failed",e);
 		}
 	}
+	public static void main(String[] args) {
+        JFinal.start("WebRoot", 8080, "/", 10);
+    }
 
 }

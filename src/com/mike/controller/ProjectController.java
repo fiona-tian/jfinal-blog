@@ -16,7 +16,7 @@ public class ProjectController extends Controller {
 				"select * ", 
 				"from article where finish = 1 and projectId = ? order by id desc",
 				projectId); 
-		Project project = CacheKit.handle("article", "projectId_" + projectId, new IDataLoader() {
+		Project project = CacheKit.get("article", "projectId_" + projectId, new IDataLoader() {
 			@Override
 			public Object load() {
 				return Project.dao.findById(projectId);

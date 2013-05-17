@@ -16,7 +16,7 @@ public class CategorySubController extends Controller {
 				"select * ", 
 				"from article where finish = 1 and categorySubId = ? order by id desc",
 				categorySubId);
-		CategorySub categorySub = CacheKit.handle("article", "categorySubId_" + categorySubId, new IDataLoader() {
+		CategorySub categorySub = CacheKit.get("article", "categorySubId_" + categorySubId, new IDataLoader() {
 			@Override
 			public Object load() {
 				return CategorySub.dao.findById(categorySubId);

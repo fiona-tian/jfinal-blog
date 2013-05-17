@@ -4,12 +4,12 @@ import java.io.File;
 
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
-import com.jfinal.util.PathUtil;
+import com.jfinal.kit.PathKit;
 import com.mike.interceptor.SessionInterceptor;
 import com.mike.util.ZipUtil;
 @Before(SessionInterceptor.class)
 public class PictureController extends Controller{
-private static final String rootPath = PathUtil.getWebRootPath();;
+private static final String rootPath = PathKit.getWebRootPath();;
 	public void index(){
 		File img = new File(rootPath + "/img/u");
 		File[] imgs = img.listFiles();
